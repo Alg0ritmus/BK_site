@@ -1,0 +1,41 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+<!-- CSS LINKY -->
+
+{% block add_head %}
+<title>Archiv</title>
+<link rel="stylesheet" href="{% static 'base/archiv.css'%}">
+<link rel="stylesheet" href="{% static 'base/galeria.css'%}">
+<link rel="stylesheet" href="{% static 'base/galeria_create.css'%}">
+{% endblock %}
+
+
+<!-- MAIN BODY -->
+
+{% block main %}
+<div class="main-wrapper">
+  <div class="middle-wrapper">
+    <div class="archiv-title">
+      <p>Vytvor gelériu</p>
+    </div>
+    <div class="galery-form-wrapper">
+      <div class="galery-blue-block"></div>
+      <div class="galery-form-block">
+        <p>Galéria</p>
+        <form action="{% url 'base:galeria_create' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <label for="nazov_galerie">Názov galérie:</label><br>
+          <input class="archiv-form-input" type="text" name="title"><br>
+          
+          <label for="file_field" class="file-btn">Vyber obrázky
+            <input type="file" name="file_field" value="Označ" class="file" multiple>
+          </label><br>
+          <input class="kontakt-btn galery-btn" type="submit" value="ODOŠLI"><br>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock%}

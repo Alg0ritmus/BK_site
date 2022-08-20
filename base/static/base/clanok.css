@@ -1,0 +1,267 @@
+main{
+    background-color: white;
+    min-height: 100%;
+}
+footer{
+    margin-top: 0;
+}
+
+
+/* VYTVOR COMMENT */
+.comment-form-field{
+    width: 100%;
+    line-height: 1em;
+    margin-bottom: 2em;
+    font-size: 1em;
+    padding: 7px 0px;
+    border: 1px solid #F0F0F0;
+    padding-left: 1em;
+    color: #000000 ;
+}
+
+.comment-form-wrapper label {
+    font-size: 1.1em;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.comment-form-wrapper p {
+    font-family: var(--poppins) !important;
+    font-size: 1.2em;
+    margin-bottom: 1.3em;
+}
+
+.comment-form-wrapper textarea{
+    font-size: 1em !important;
+    font-family: var(--poppins) !important;
+    overflow: hidden;
+    overflow-y: scroll;
+    resize: none !important;
+}
+
+.comment-btn{
+    background-color: #0069D9;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 7px 15px;
+    border: none;
+    text-transform: uppercase;
+    margin-bottom: 2em;
+}
+
+/* SCROLLBAR-FORM */
+
+#textarea-kontakt::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+
+  background-color: #F5F5F5;
+}
+
+#textarea-kontakt::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+#textarea-kontakt::-webkit-scrollbar-thumb
+{
+
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
+
+.half-page-wrapper{
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0);
+    padding: 6em 0;
+}
+
+
+
+.comment-wrapper{
+    width: 100%;
+    height: 100%;
+    margin-top: 10em;
+
+}
+
+.comment-hr{
+    border-color: #f0f0f06b ;
+    margin: 3em 0;
+
+}
+
+.comment-body{
+    font-family: var(--poppins);
+
+}
+
+.clanok-title_{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 2em;
+    font-size: var(--section-diviror);
+    color: black;
+    font-weight: bold;
+    font-family: var(--poppins);
+    text-transform: uppercase;
+    
+
+}
+.clanok-title_ p{
+    position: relative;  
+}
+
+.clanok-title_ p::after{
+    content: ' ';
+    width: 100%;
+    display: block;
+    position: absolute;
+    height: 5px;
+    background-color: #0069D9;
+}
+
+
+.comment-body h2{
+    margin: 0.6em 0;
+    font-size: 1.4em;
+
+}
+
+.comment-text{
+    width: 95%;
+    min-height: 4em;
+    color: #8C8C8C;
+    padding: 0 2em;
+    border-left: 3px solid #0069D9;
+}
+
+
+.add_pictures_form_wrapper{
+    height: 100%;
+    width: 40%;
+
+}
+
+.add_pictures_form_wrapper form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: var(--poppins);
+}
+
+.add_pictures_form_wrapper form input{
+    margin-bottom: 2em;
+}
+
+
+.add_pictures_form_wrapper label{
+    font-weight: bold;
+    font-size: 1.4em;
+    margin: 0.4em 0;
+}
+
+.text-black{
+    color:#000000;
+}
+
+.file-upload-button {
+    color: #0069D9;
+    font-family: var(--poppins);
+    font-weight: bold;
+    font-size: 1em !important;
+    background-color: white;
+    border: 2px solid #0069D9;
+    padding: 7px 14px;
+  }
+
+
+.small-break{
+    display: block;
+    margin:4em 0;
+}
+
+
+.quill-buttons-wrapper{
+    width: 100%;
+    height: 5em;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    padding: 0 3em;
+    align-items: center
+}
+
+.yellowish{
+    background-color: #FFC107;
+    color: white;
+}
+
+.img-url-wrapper{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+
+}
+
+#img_url{
+    line-height: 100%;
+    padding: 7px 5px;
+    font-size: 0.8em;
+    border-radius: none;
+    border: 1px solid #f0f0f06b;
+    width: 50%;
+}
+
+
+/* IMMG RESIZE IN QUILL */
+
+.resizable {
+    display: inline-block;
+    background: red;
+    resize: horizontal;
+    overflow: hidden;
+    line-height: 0;
+    max-height: 100%;
+    max-width: 100%;
+  
+    }
+  
+
+  
+
+
+@media only screen and (max-device-width: 500px) {
+    .half-page-wrapper{
+        width: 100% !important;
+    }
+
+    .comment-text{
+        font-size: 0.8em;
+    }
+    .add_pictures_form_wrapper{
+        width: 100%;
+    }
+}
+
+
+
+.clanok-title{
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #0069D9;
+}
+
+.clanok-text-title{
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 1.5em 0 0.5em 0;
+}
+

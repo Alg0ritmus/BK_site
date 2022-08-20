@@ -1,0 +1,103 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+<!-- CSS LINKY -->
+
+{% block add_head %}
+<title>Clanok</title>
+<link rel="stylesheet" href="{% static 'base/clanok.css' %}">
+<link rel="stylesheet" href="{% static 'base/galeria.css' %}">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js" defer></script>
+<script src="{% static 'base/js/scrip.js' %}" defer></script>
+
+{% endblock %}
+
+
+<!-- MAIN BODY -->
+
+{% block main %}
+<div class="main-wrapper">
+    <label for="clanok_title" class="clanok-title">Názov Článku:</label>
+    <input type="text" name="clanok_title" class="clanok_title" placeholder="{{clanok.title}}" value="{{clanok.title}}"
+        style="border: none; border-bottom: 1px black solid; ">
+    <p class="clanok-text-title">Text:</p>
+    <!-- QILL SECTIOIN -->
+    <div>
+        <div id="editor-edit">
+            <h1>Hello World!</h1>
+            <p>Some initial <strong>bold</strong> text</p>
+            <p><br></p>
+        </div>
+        <div class="quill-buttons-wrapper">
+            <p><a class="kontakt-btn yellowish" onclick="articleSave('{{clanok.id}}')">Ulož</a></p>
+        </div>
+
+
+        <!-- OZNAM ? -->
+        
+        <label for="is_oznam">Post ako oznam: </label>
+        {% if clanok.oznamy %}
+        <input type="checkbox" name="is_oznam_checked" id="is_oznam" onchange="is_oznam_req('{{clanok.id}}')" checked>
+        {% else %}
+        <input type="checkbox" name="is_oznam_checked" id="is_oznam" onchange="is_oznam_req('{{clanok.id}}')">
+        {% endif %}
+
+    </div>
+
+    <hr class="comment-hr">
+    <!-- AVAILABLE PICTURES -->
+    <div>
+        <div class="galeria-wrapper">
+            <center>
+                <h1>Dostupné obrázky</h1>
+            </center>
+            <span class="small-break"></span>
+            <div class="grid-container-galeria">
+
+                {% for img in clanok.images.all %}
+                <div class="grid-item-galeria">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{img.url}}" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">{{img.url}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="comment-hr">
+
+    <!-- ADD PICTURES -->
+    <div class="add_pictures_form_wrapper">
+        <!-- clanok.id nie je este v contexte -->
+        <form action="{% url 'base:clanok_add_img' clanok.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="nazov_obrazka">Názov obrázka</label>
+            <input type="text" name="nazov_obrazka" class="kontakt-form-field text-black"
+                placeholder="Zadaj názov obr.">
+            
+            <label for="foto_files" class="file-upload-button">Vyber súbory</label>
+            <input type="file" name="file_field" id="foto_files" multiple style="display:none;">
+
+            <input type="submit" value="NAHRAJ" class="kontakt-btn">
+
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" defer>
+    window.onload = function () {
+        getClanokBody('{{clanok.id}}');
+    }
+
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+<!-- CSS LINKY -->
+
+{% block add_head %}
+<title>Archiv</title>
+<link rel="stylesheet" href="{% static 'base/archiv.css'%}">
+<link rel="stylesheet" href="{% static 'base/galeria.css'%}">
+<link rel="stylesheet" href="{% static 'base/galeria_create.css'%}">
+<script src="{% static 'base/js/loadAfter.js' %}" defer></script>
+{% endblock %}
+
+
+<!-- MAIN BODY -->
+
+{% block main %}
+<div class="main-wrapper">
+  <div class="middle-wrapper">
+    <div class="archiv-title">
+      <p>{{galery.title}}</p>
+    </div>
+    <div class="galeria-wrapper">
+      {% if perms.base.change_galeria %}
+      <form action="{% url 'base:galeria_add_img_to_galeria' galery.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="file_field" class="file-btn">Pridaj obrázky
+          <input type="file" name="file_field" value="Označ" class="file" multiple>
+        </label><br>
+        <input class="kontakt-btn galery-btn" type="submit" value="ODOŠLI"><br>
+      </form>
+      {% endif %}
+      <div class="grid-container-galeria five-grid">
+
+       {% for img in images %}
+        <div class="grid-item-galeria" onclick="openGalery(this)">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top"
+              src={{img.url}}
+              alt="Card image cap">
+              {% if perms.base.change_galeria %}
+              <div class="delete_galery_card">
+                <form action="{% url 'base:galeria_del_img_to_galeria' galery.id img.id %}" method="POST">
+                  {% csrf_token %}
+                    <button type="submit" class="delete-galery-card-btn"><i class="fa fa-close"></i></button>
+                </form>
+              </div>
+              {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+        
+
+      </div>
+      {% if perms.base.change_galeria %}
+      <form action="{% url 'base:galeria_delete' galery.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="kontakt-btn" style="color:rgb(55, 55, 55);background-color: #F8BB05;">Vymaž Galeriu</button>
+      </form>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-image">
+  <div class="modal-image-wrapper">
+
+    
+    <i class="fa fa-close" onclick="closeGalery()"></i>
+    <div class="modal-arrows">
+      <i class="fa fa-arrow-left"></i>
+      <img src="http://192.168.0.249:8000/filesFromUsers/IMG-20220817-WA0015.jpg" alt="" width="100%" height="100%">
+      <i class="fa fa-arrow-right"></i>
+    </div>
+
+  </div>
+</div>
+{% endblock%}
+

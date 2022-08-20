@@ -1,0 +1,230 @@
+main{
+    background-color: #fff;
+}
+footer{
+    margin-top: 0;
+    height:36.5%;
+}
+
+.middle-wrapper{
+    width: 100%;
+    min-height: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.middle-wrapper .archiv-title{
+    position: relative;
+}
+
+.middle-wrapper .archiv-title p{
+    font-size: var(--section-diviror);
+    color: black;
+    font-weight: bold;
+    font-family: var(--poppins);
+    text-transform: uppercase;
+}
+
+
+.middle-wrapper .archiv-title p::after{
+    content: ' ';
+    width: 100%;
+    display: block;
+    position: absolute;
+    height: 5px;
+    background-color: #0069D9;
+}
+
+/* CARDS */
+
+.archiv-card-wrapper{
+    width: 60%;
+    max-width: 900px;
+    padding: 6em 3em;
+}
+
+.archiv-card{
+    width: 750px;
+    height: 200px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: 4em auto;
+    font-family: var(--poppins);
+}
+
+.archiv-card-img{
+    width: 30%;
+    height: 100%;
+}
+
+.archiv-cad-image{
+    position: absolute;
+    height: 170px;
+    width: 230px;
+    background-color: black;
+    top:5%;
+    box-shadow: var(--default-shadow);
+}
+
+.archiv-cad-image img{
+    height: 100%;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+    object-fit: cover;
+}
+
+.archiv-card-body{
+    width: 700px;
+    background-color: #EEF1F2;
+    padding: 30px 90px;
+    box-shadow: var(--default-shadow);
+
+}
+
+
+.archiv-card-text{
+    font-size: 0.8em;
+    color: black;
+    height: 5em;
+    line-height: 1.2em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    text-align: justify;
+}
+
+
+.archiv-card-nazov{
+    color: #0069D9;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 0.3em;
+}
+
+
+.archiv-card-body .archiv-icons{
+    position: absolute;
+    top:1em;
+    right: 1em;
+    color: black;
+    display: flex;
+    flex-direction: row;
+}
+
+.archiv-icons i{
+    margin-left: 0.3em;
+}
+
+
+.login i{
+    font-size: var(--logo);
+    color: #58AAFF;
+    margin-bottom: 1rem;
+} 
+
+
+.setTopPost{
+    position: absolute !important;
+    color: #fff;
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-size: large;
+    font-weight:bold;
+    padding: 1em 0.6em;
+    background-color: rgba(0, 0, 0, 0.647) !important;
+    top: 0;
+    left: 0;
+
+}
+
+.setTopPost a {
+    margin: 0.3em;
+}
+
+
+
+@media only screen and (max-device-width: 1788px) {
+     .archiv-card-wrapper{
+        padding: 0;
+        width: 100%;
+    }
+    .archiv-cad-image{
+        position: relative;
+        width: 100%;
+        box-shadow: none;
+       
+    }
+    .fa-angle-double-down{
+        color: black;
+    }
+
+    .archiv-card{
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        box-shadow: var(--default-shadow);
+    
+    }
+    .archiv-card-body{
+        width: 100% !important;
+        padding: 30px 40px;
+        text-align: left;
+        box-shadow: none;
+    }
+
+    .archiv-card-img{
+        background-color: #0069D9;
+        width: 100%;
+    }
+
+}
+
+
+@media only screen and (max-width: 900px) {
+    .archiv-card-wrapper{
+        padding: 0;
+        width: 100%;
+    }
+    .archiv-cad-image{
+        position: relative;
+        width: 100%;
+        box-shadow: none;
+       
+    }
+    .fa-angle-double-down{
+        color: black;
+    }
+
+    .archiv-card{
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        box-shadow: var(--default-shadow);
+    
+    }
+    .archiv-card-body{
+        width: 100% !important;
+        padding: 30px 40px;
+        text-align: left;
+        box-shadow: none;
+    }
+
+    .archiv-card-img{
+        background-color: #0069D9;
+        width: 100%;
+    }
+
+}

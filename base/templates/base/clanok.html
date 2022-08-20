@@ -1,0 +1,65 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+<!-- CSS LINKY -->
+
+{% block add_head %}
+<title>Clanok</title>
+<link rel="stylesheet" href="{% static 'base/clanok.css' %}">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js" defer></script>
+<script src="{% static 'base/js/getQuill.js' %}"  type = "text/javascript"  defer></script>
+{% endblock %}
+
+
+<!-- MAIN BODY -->
+
+{% block main %}
+<div class="main-wrapper">
+    <div class="clanok-title_">
+        <p>{{clanok.title}}</p>
+    </div>
+    <!-- QILL SECTIOIN -->
+    <div>
+        <div id="editor">
+        
+          </div>
+    </div>
+
+    <!-- HALF PAGE WRAPPER -->
+    <div class="half-page-wrapper">
+        <!-- ADD COMMENT SECTIOIN -->
+        <div class="comment-form-wrapper">
+            <p>Reaguj na príspevok</p>
+            <form action="{% url 'base:add_comment' clanok.id %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="autor" id="meno_koment" class="comment-form-field">
+                <textarea name="text" id="" cols="30" rows="10" class="comment-form-field" id="textarea-kontakt"></textarea>
+                <input type="submit" value="ODOŠLI" class="comment-btn">
+            </form>
+        </div>
+        <!-- LIST OF COMMENTS SECTIOIN -->
+        <div class="comment-wrapper">
+            {% for komentar in komentare %}
+            <div class="comment">
+                <hr class="comment-hr">
+                <div class="comment-body">
+                    <h2>{{komentar.author_name}}</h2>
+                    <div class="comment-text">
+                        {{komentar.body}}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+<script type = "text/javascript" defer>
+window.onload = function(){
+    getClanokBody('{{clanok.id}}')
+}
+
+</script>
+{% endblock %}

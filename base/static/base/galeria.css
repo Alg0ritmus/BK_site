@@ -1,0 +1,255 @@
+.middle-wrapper {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.archiv-title {
+    height: 20%;
+}
+
+.galeria-wrapper {
+    width: 100%;
+    height: 80%;
+    padding: 8em 0;
+}
+
+.grid-container-galeria {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    padding: 10px;
+}
+
+.five-grid {
+    grid-template-columns: 20% 20% 20% 20% 20% !important;
+
+}
+
+.grid-item-galeria {
+    border: none;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+
+.card-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: var(--poppins);
+    font-size: 0.5em;
+}
+
+.card-img-top {
+    height: 100%;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+    object-fit: cover;
+}
+
+.grid-item-galeria .card {
+    box-shadow: var(--default-shadow);
+    margin: auto;
+}
+
+.grid-item-galeria .card-body {
+    padding: 6px 12px;
+    background-color: white;
+}
+
+
+.delete_galery_card{
+    display: none;
+}
+
+.delete-galery-card-btn {
+    background-color: rgb(255, 255, 255);
+    color: rgb(85, 85, 85);
+    border: none;
+    padding: 7px 15px;
+}
+
+.grid-item-galeria .card:hover .delete_galery_card{
+    display: block;
+}
+
+/*  GALERIA MODAL IMG  */
+
+.modal-image{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.777);
+    display: none; 
+    width: 100vw;
+    height: 100vh;
+    z-index: 9s;
+    top: 0;
+    left: 0;
+    color: white;
+    font-size: 2vw;
+}
+.modal-image-wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-image-wrapper .fa-close {
+    position: absolute;
+    top:1em;
+    right: 1em;
+}
+
+.modal-arrows{
+    width: 95%;
+    height: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.modal-arrows img{
+    width: auto;
+}
+
+/* SMARTPHONES & TABLETS */
+
+@media only screen and (max-device-width: 1560px) {
+    .fa-angle-double-down {
+        color: white !important;
+    }
+
+    .grid-container-galeria {
+        grid-template-columns: 33.33% 33.33% 33.33% !important;
+
+    }
+
+    .card {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+
+@media only screen and (max-device-width: 1120px)  {
+    .fa-angle-double-down {
+        color: white !important;
+    }
+
+    .grid-container-galeria {
+        grid-template-columns: 50% 50% !important;
+
+    }
+
+    .card {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+@media only screen and (max-device-width: 560px)  {
+    .fa-angle-double-down {
+        color: white !important;
+    }
+
+    .grid-container-galeria {
+        grid-template-columns: 100% !important;
+
+    }
+
+    .card {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .card-img-top {
+        height: auto !important;
+    }
+
+    /*  GALERIA MODAL IMG  */
+
+    .modal-image{
+        font-size: 2vh;
+    }
+
+
+}
+
+
+/* DESKTOP LIKE DEVICES */
+
+
+@media only screen and (max-width: 1560px) {
+    .fa-angle-double-down {
+        color: white !important;
+    }
+
+    .grid-container-galeria {
+        grid-template-columns: 33.33% 33.33% 33.33% !important;
+
+    }
+
+    .card {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+
+@media only screen and (max-width: 1120px)  {
+    .fa-angle-double-down {
+        color: white !important;
+    }
+
+    .grid-container-galeria {
+        grid-template-columns: 50% 50% !important;
+
+    }
+
+    .card {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+@media only screen and (max-width: 560px)  {
+    .fa-angle-double-down {
+        color: white !important;
+    }
+
+    .grid-container-galeria {
+        grid-template-columns: 100% !important;
+
+    }
+
+    .card {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .card-img-top {
+        height: auto !important;
+    }
+
+    /*  GALERIA MODAL IMG  */
+
+    .modal-image{
+        font-size: 2vh;
+    }
+
+
+}
+
+

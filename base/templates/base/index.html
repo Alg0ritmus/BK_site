@@ -1,0 +1,356 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- FAV ICONs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="{% static 'base/style.css' %}">
+    {% block add_head %}
+        <title>1.BK Humenné</title>
+    {% endblock %}
+    <script src="{% static 'base/js/index.js' %}" defer></script>
+    <script src="{% static 'base/js/serialize2.js' %}"></script>
+</head>
+<body>
+    <!-- NAV BAR -->
+    <nav>
+        <div class="nav-wrapper">
+            <div class="logo">
+                <p>1.BK Humenné</p>
+            </div>
+            <div class="navbar">
+                <ul>
+                    <li><a href="{% url 'base:home' %}" class="active">Domov</a></li>
+                    <li><a href="{% url 'base:home' %}#kontakt">Kontakt</a></li>
+                    <li><a href="{% url 'base:home' %}#zapis">Zápis</a></li>
+                    <li><a href="{% url 'base:archiv' %}">Archív</a></li>
+                    <li><a href="{% url 'base:galeria' %}">Galéria</a></li>
+                </ul>
+            </div>
+            <div class="login">
+                <a href="{% url 'base:dashboard' %}"><i class="fa fa-user-circle"></i></a>
+            </div>
+            <div>
+                <i onclick="toggleNav()" class="fa fa-angle-double-down"></i>
+            </div>
+
+        </div>
+    </nav>
+
+    <main>
+        {% block main %}
+        <div class="main-wrapper hero">
+            <div class="hero-text">
+                <div class="hero-text-type">
+                    <p class="hero-text-type-one">PRIDAJ SA K NÁM A HRAJ</p>
+                    <p class="hero-text-type-two">BASKETBALL</p>
+                    <p class="hero-text-type-three">ZA NÁŠ TÍM 1.BK HUMENNÉ</p>
+                    <a class="hero-btn" href="">Zapíš sa!</a>
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="{% static 'base/img/steph.svg' %}" alt="steph_Curry">
+            </div>
+
+        </div>
+
+        <!-- DIVIDER LINE -->
+        <div class="section-dividor">
+            <div class="horizontal-line"></div>
+            <!-- MANUAL EDIT IS NEEDED IF CHANGING VALUE_::before --> 
+            <p class="section-title">Top Posts</p>
+            <div class="horizontal-line"></div>
+        </div>
+        
+        <!-- TOP POSTS SECTION -->
+        <div class="main-wrapper">
+            <div class="grid-container">
+                {% for topPost in Posts %}
+                {% if topPost.clanok %}
+                <div class="grid-item">
+                    <div class="top-post-card">
+                        <div class="top-post-card-img">
+                            <img src="{{topPost.clanok.images.first.url}}" alt="">
+                        </div>
+                        <div class="top-post-card-context">
+                            <p class="top-post-card-title">
+                                {{topPost.clanok.title}}
+                        
+                            </p>
+                            <p class="top-post-card-body">
+                                <script>quillBodyUniversal('{{topPost.clanok.body}}')</script>
+                                
+                            </p>
+                            <p class="top-post-card-date">
+                                Last updated {{topPost.clanok.edit_date}}
+
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                
+              </div>
+              
+              <script>
+                var texts =  document.querySelectorAll('.top-post-card-body');
+                for (let i=0; i<texts.length; i++){
+                    texts[i].textContent = arrayOfBodies[i];
+                }
+                arrayOfBodies = [];
+                
+            </script>
+
+        </div>
+
+
+        <div class="section-dividor">
+            <div class="horizontal-line"></div>
+            <!-- MANUAL EDIT IS NEEDED IF CHANGING VALUE_::before --> 
+            <p class="section-title Oznamy">Oznamy</p>
+            <div class="horizontal-line"></div>
+        </div>
+
+
+        <!-- OZNAMY SECTION -->
+        <div class="main-wrapper">
+            <div class="annoucment-list">
+                {% for oznam in Oznamy %}
+                <div class="annoucment">
+                    <div class="annoucment-img-sec">
+                        <div class="a-orange"></div>
+                        <div class="a-blue"></div>
+                        <div class="a-img">
+                            <img src="{{oznam.clanok.images.url}}"                         alt="">
+                        </div>
+                    </div>
+                    <div class="annoucment-body-sec">
+                        <p class="annoucment-title">{{oznam.clanok.title}}</p>
+                        <p class="annoucment-text"></p>
+                        <script>quillBodyUniversal('{{oznam.clanok.body}}')</script>
+                        <a class="annoucment-submit" href="">Submit!</a>
+                        <p class="annoucment-date">Last updated {{oznam.clanok.edit_date}} </p>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <script>
+            var texts =  document.querySelectorAll('.annoucment-text');
+            for (let i=0; i<texts.length; i++){
+                texts[i].textContent = arrayOfBodies[i];
+            }
+            
+        </script>
+
+
+
+        <div class="section-dividor">
+            <div class="horizontal-line"></div>
+            <!-- MANUAL EDIT IS NEEDED IF CHANGING VALUE_::before --> 
+            <p class="section-title Zapis">Zápis</p>
+            <div class="horizontal-line"></div>
+        </div>
+
+
+        <!-- ZAPIS -->
+
+        <div class="main-wrapper">
+            <div class="zapis-wrapper" id="zapis">
+                <div class="zapis-left-section">
+                    <div class="zapis-img">
+                        <img src="https://envato-shoebox-0.imgix.net/ce53/6deb-8738-4657-a9bd-8f688bfff8a6/fabio+basket+2+%2881%29.jpg?auto=compress%2Cformat&fit=max&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark2.png&markalign=center%2Cmiddle&markalpha=18&w=500&s=6a3c17300d15a3fa22fcc9d47a6d1bba" alt="">
+                    </div>
+                </div>
+                <div class="zapis-right-section">
+                    <p class="zapis-title">Tri jednoduché kroky k zápisu</p>
+                    <p>
+                        This is a wider card with supporting text below as a
+                        natural lead-in to additional content. This content is a
+                        little bit longer. This is a wider card with supporting text
+                        below as a natural lead-in to additional content. This
+                        content is a little bit longer. This
+                        content is a little bit longer.
+                    </p>
+                    <p>
+                        This is a wider card with supporting text below as a
+                        natural lead-in to additional content. This content is a
+                        little bit longer. This is a wider card with supporting text
+                        below as a natural lead-in to additional content. This
+                        content is a little bit longer. This
+                        content is a little bit longer.
+                    </p>
+                    <p>
+                        This is a wider card with supporting text below as a
+                        natural lead-in to additional content. This content is a
+                        little bit longer. This is a wider card with supporting text
+                        below as a natural lead-in to additional content. This
+                        content is a little bit longer.This
+                        content is a little bit longer. 
+                    </p>
+                    <a href="" class="zapis-btn"> Zapíš sa</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-dividor">
+            <div class="horizontal-line"></div>
+            <!-- MANUAL EDIT IS NEEDED IF CHANGING VALUE_::before --> 
+            <p class="section-title Informacie">Informácie</p>
+            <div class="horizontal-line"></div>
+        </div>
+
+
+        <!-- INFORMACIE -->
+        <div class="main-wrapper">
+            <div class="grid-container-info">
+                <div class="grid-item-info informacie-card">
+                    <div class="info-card">
+                        <div class="info-title bg-info-blue">
+                            <p>Junior</p>
+                        </div>
+                        <div class="info-body">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
+                            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
+                            pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                            rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
+                            mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
+                            nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item-info informacie-card">
+                    <div class="info-card">
+                        <div class="info-title bg-info-green">
+                            <p>Tabuľky</p>
+                        </div>
+                        <div class="info-body">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
+                            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
+                            pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                            rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
+                            mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
+                            nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item-info informacie-card">
+                    <div class="info-card">
+                        <div class="info-title bg-info-red">
+                            <p>Harmonogram</p>
+                        </div>
+                        <div class="info-body">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
+                            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
+                            pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                            rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
+                            mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
+                            nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-item-info informacie-card">
+                    <div class="info-card">
+                        <div class="info-title bg-info-yellow">
+                            <p>Letná príprava</p>
+                        </div>
+                        <div class="info-body">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
+                            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
+                            pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                            rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
+                            mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
+                            nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="section-dividor">
+            <div class="horizontal-line"></div>
+            <!-- MANUAL EDIT IS NEEDED IF CHANGING VALUE_::before --> 
+            <p class="section-title Kontakt">Kontakt</p>
+            <div class="horizontal-line"></div>
+        </div>
+
+
+        
+
+
+        <!-- KONTAKT -->
+
+        <div class="main-wrapper">
+            <div class="kontakt-wrapper" id="kontakt">
+                <div class="kontakt-blue"></div>
+                <div class="kontakt-form">
+                    <div class="kontakt-form-wrapper">
+                        <h1>Kontaktuj nás e-mailom</h1>
+                        <form action="" method="post">
+                            <label for="e-mail">Váš e-mail:</label><br>
+                            <input type="email" class="kontakt-form-field" placeholder="Zadaj e-mail ..." name="e-mail"><br>
+                            <label for="email-body">Text:</label><br>
+                            <textarea name="email-body" class="kontakt-form-field" id="textarea-kontakt"  placeholder="Napíš nám..." cols="30" rows="10"></textarea><br>
+                            <input type="submit" class="kontakt-btn" value="obošli"><br>
+                        </form>
+                        <p class="additional-info">* Náš e-mail: jf.babjak@gmail.com</p>
+                        <p class="additional-info">* Naše tel. číslo: 0944 555 567</p>
+                            
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    {% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-wrapper">
+            <div class="footer-left">
+                <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+            </div>
+            <div class="footer-divirer"></div>
+            <div class="footer-right">
+                <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+                <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+            </div>
+
+        </div>
+    </footer>
+{% block bottom_scripts %}
+    
+{% endblock %}
+</body>
+</html>

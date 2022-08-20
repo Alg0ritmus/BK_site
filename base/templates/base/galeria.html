@@ -1,0 +1,50 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+<!-- CSS LINKY -->
+
+{% block add_head %}
+<title>Archiv</title>
+<link rel="stylesheet" href="{% static 'base/archiv.css'%}">
+<link rel="stylesheet" href="{% static 'base/galeria.css'%}">
+{% endblock %}
+
+
+<!-- MAIN BODY -->
+
+{% block main %}
+<div class="main-wrapper">
+  <div class="middle-wrapper">
+    <div class="archiv-title">
+      <p>Galéria</p>
+    </div>
+    <div class="galeria-wrapper">
+      <div class="grid-container-galeria">
+
+        {% for item in galeries %}
+        <a href="{% url 'base:galeria_get' item.id %}">
+          <div class="grid-item-galeria">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src={{item.images.all.first.url}} alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">{{item.title}}</p>
+              </div>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+        {% if perms.base.add_galeria %}
+        <a href="{% url 'base:galeria_create' %}">
+          <div class="grid-item-galeria">
+            <div class="card" style="width: 14rem;">
+              <img class="card-img-top" src="{% static 'base/img/add_card.png' %}" alt="Card image cap">
+            </div>
+          </div>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock%}

@@ -1,0 +1,145 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+<!-- CSS LINKY -->
+
+{% block add_head %}
+<title>Archiv</title>
+<link rel="stylesheet" href="{% static 'base/archiv.css'%}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'base/js/serialize.js' %}" defer></script>
+  <script >
+    function checkbox(modal) {
+        if (modal.checked == true){
+            modal.nextElementSibling.style.display = "flex";
+
+        }
+        else{
+            modal.nextElementSibling.style.display = "none";
+        }
+} 
+</script>
+  {% endblock %}
+
+
+<!-- MAIN BODY -->
+
+
+{% block main %}
+<div class="main-wrapper">
+    <div class="middle-wrapper">
+        <div class="archiv-title">
+            <p>Archív</p>
+        </div>
+        <div class="archiv-card-wrapper">
+
+            {% for clanok in archive %}
+                
+                <div class="archiv-card">
+                    <div class="archiv-card-img">
+                        <div class="archiv-cad-image">
+                            <img src="{{clanok.images.first.url}}" alt="">
+                        </div>
+                    </div>
+                    <div class="archiv-card-body">
+                        <a href="{% url 'base:clanok' pk=clanok.id %}">
+
+                            <p class="archiv-card-nazov">{{clanok.title}}</p>
+                            <p class="archiv-card-text">
+                                <span style="display:none;">{{clanok.body}}</span>                            
+                            </p>
+                            <p class="annoucment-date">{{clanok.edit_date}}</p>
+                        </a>
+                        <!-- if I have permission do this -->
+                        {% if perms.base.change_clanok %}
+                        <div class="archiv-icons">
+                            <a href="{% url 'base:clanok_create' pk=clanok.id %}">
+                                <i class="fa fa-edit"></i>
+                            </a>
+
+                            
+                            
+                            <!-- its not in top Posts-->
+                            
+                            {% if clanok not in Posts %}
+                            
+                            <label for="modal-1{{clanok.id}}">
+                                <input class="modal-state" id="modal-1{{clanok.id}}" type="checkbox" onclick="checkbox(this)" style="visibility: hidden;" />
+                                
+                                <div class="setTopPost">
+                                    <a href="{% url 'base:setTopPost' pk=clanok.id pk_post=1 %}">1</a>
+                                    <a href="{% url 'base:setTopPost' pk=clanok.id pk_post=2 %}">2</a>
+                                    <a href="{% url 'base:setTopPost' pk=clanok.id pk_post=3 %}">3</a>
+                                    <a href="{% url 'base:setTopPost' pk=clanok.id pk_post=4 %}">4</a>
+
+                                </div>
+                                <i class="fa fa-star-o"></i>
+                            </label>
+                            {% endif %}
+                            <!-- it is in top Posts-->
+                            {% if clanok in Posts %}
+                            <label for="modal-1{{clanok.id}}">
+                                <input class="modal-state" id="modal-1{{clanok.id}}" type="checkbox" style="visibility: hidden;" />
+                                <a href="{% url 'base:delTopPost' pk=clanok.id %}"><i class="fa fa-star"></i></a>
+        
+                            </label>
+                            {% endif %}
+
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+            {% endfor %}
+
+            <!-- ADD NEW ARCHIVE -->
+            {% if perms.base.add_clanok %}
+            <div style="display: flex; justify-content: center;margin-bottom: 2em;">
+                <a href="{% url 'base:clanok_create_empty' %}">
+                    <div class="grid-item-galeria">
+                      <div class="card" style="width: 7rem;">
+                        <img class="card-img-top" src="{% static 'base/img/add_card.png' %}" alt="Card image cap">
+                      </div>
+                    </div>
+                  </a>
+            </div>
+            {% endif %}
+            
+        </div>
+        <div class="paginattion-wrapper">
+            <ul class="pagination pagination-sm">
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo; 1</a></li>
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a  class="page-link"href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+            
+                {% else %}
+                <li class="page-item"><a class="page-link" href="">previous</a></li>
+                {% endif %}
+                
+                <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+                
+                
+                {% if page_obj.has_next %}
+                <li class="page-item"><a  class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+                
+                {% else %}
+                
+                <li class="page-item"><a class="page-link" href="">next</a></li>
+                {% endif %} 
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }} &raquo;</a></li>
+                    
+                
+              </ul>
+        </div> 
+    </div>
+</div>
+{% endblock%}

@@ -1,0 +1,363 @@
+* {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    color: #99a0b0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background: #f5f5fa;
+    font-size: 16px;
+    line-height: 120%;
+    font-family: Open Sans, Helvetica, sans-serif;
+  }
+  .dashboard {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-gap: 0;
+    grid-template-columns: 300px auto;
+    grid-template-rows: 80px auto;
+    grid-template-areas: 'menu search' 'menu content';
+  }
+  .search-wrap {
+    grid-area: search;
+    background: #fff;
+    border-bottom: 1px solid #ede8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3em;
+    position: relative;
+  }
+  .search-wrap .search {
+    height: 40px;
+  }
+  .search-wrap .search label {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  .search-wrap .search label svg {
+    display: block;
+  }
+  .search-wrap .search label svg path,
+  .search-wrap .search label svg circle {
+    fill: #b6bbc6;
+    transition: fill .15s ease;
+  }
+  .search-wrap .search label input {
+    display: block;
+    padding-left: 1em;
+    height: 100%;
+    margin: 0;
+    border: 0;
+  }
+  .search-wrap .search label input:focus {
+    background: #f5f5fa;
+  }
+  .search-wrap .search label:hover svg path,
+  .search-wrap .search label:hover svg circle {
+    fill: #2b3a60;
+  }
+  .search-wrap .user-actions button {
+    border: 0;
+    background: none;
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    padding: 0;
+    margin-left: 0.5em;
+  }
+  .search-wrap .user-actions button svg {
+    position: relative;
+    top: 2px;
+  }
+  .search-wrap .user-actions button svg path,
+  .search-wrap .user-actions button svg circle {
+    fill: #b6bbc6;
+    transition: fill .15s ease;
+  }
+  .search-wrap .user-actions button:hover svg path,
+  .search-wrap .user-actions button:hover svg circle {
+    fill: #2b3a60;
+  }
+  .menu-wrap {
+    grid-area: menu;
+    padding-bottom: 3em;
+    overflow: auto;
+    background: #fff;
+    border-right: 1px solid #ede8f0;
+    display: block;
+  }
+  .menu-wrap .user {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0 3em;
+  }
+  .menu-wrap .user .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .menu-wrap .user .user-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .menu-wrap .user figcaption {
+    margin: 0;
+    padding: 0 0 0 1em;
+    color: #1b253d;
+    font-weight: 700;
+    font-size: 0.875em;
+    line-height: 100%;
+  }
+  .menu-wrap nav {
+    display: block;
+    padding: 0 3em;
+  }
+  .menu-wrap nav section {
+    display: block;
+    padding: 3em 0 0;
+  }
+  .menu-wrap nav h3 {
+    margin: 0;
+    font-size: .875em;
+    text-transform: uppercase;
+    color: #4b84fe;
+    font-weight: 600;
+  }
+  .menu-wrap nav ul {
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+  .menu-wrap nav li {
+    display: block;
+    padding: 0;
+    margin: 1em 0 0;
+  }
+  .menu-wrap nav li a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #99a0b0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .875em;
+    transition: color .15s ease;
+  }
+  .menu-wrap nav li a svg {
+    display: block;
+    margin-right: 1em;
+  }
+  .menu-wrap nav li a svg path,
+  .menu-wrap nav li a svg circle {
+    fill: #b6bbc6;
+    transition: fill .15s ease;
+  }
+  .menu-wrap nav li a:hover {
+    color: #1b253d;
+  }
+  .menu-wrap nav li a:hover svg path,
+  .menu-wrap nav li a:hover svg circle {
+    fill: #2b3a60;
+  }
+  .menu-wrap nav li a.active {
+    color: #4b84fe;
+  }
+  .menu-wrap nav li a.active svg path,
+  .menu-wrap nav li a.active svg circle {
+    fill: #4b84fe;
+  }
+  .content-wrap {
+    grid-area: content;
+    padding: 3em;
+    overflow: auto;
+  }
+  .content-wrap .content-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .content-wrap .content-head h1 {
+    font-size: 1.375em;
+    line-height: 100%;
+    color: #1b253d;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+  }
+  .content-wrap .content-head .action button {
+    border: 0;
+    background: #4b84fe;
+    color: #fff;
+    width: auto;
+    height: 3.5em;
+    padding: 0 2.25em;
+    border-radius: 3.5em;
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background-color .15s ease;
+  }
+  .content-wrap .content-head .action button:hover {
+    background-color: #1861fe;
+  }
+  .content-wrap .content-head .action button:hover:active {
+    background-color: #0149e2;
+    transition: none;
+  }
+
+  .permission{
+    background: white;
+    width: 90%;
+    text-align: center;
+    padding: 3em;
+    border: 1px solid #ede8f0;
+    border-radius: 5px;
+    margin: 2em auto;
+    position: relative;
+ }
+  
+
+ .permission-title{
+    top:-0.4em;
+    left:2em;
+    font-size: 1.4em;
+    color: #212223;
+    position: absolute;
+    font-weight: 300;
+    background: rgba(255, 255, 255, 0.4);
+ }
+
+ .list-wrapper{
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px,10%));
+    grid-gap: .5rem;
+    row-gap: 1em;
+    
+
+
+
+justify-content: center;
+justify-items: center;
+    /* Uncomment these lines if you want to have the standard Trello behavior instead of the column wrapping */
+
+
+
+ }
+
+ .list-item{
+    padding: 7px 14px;
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+    background-color: rgba(8, 0, 98, 0.29);
+    border: none;
+    border-radius: 15px;
+ }
+
+
+.primary{
+    background-color: #0d6efd;
+}
+.secondary{
+    background-color: rgba(128, 128, 128, 0.608);
+}
+.success{
+    background-color: #198754;
+
+}
+.info{
+    background-color: #0dcaf0;
+}
+.warning{
+    background-color: #ffc107;
+}
+.danger{
+  background-color: #dc3545;  
+}
+.light{
+    background-color: rgba(128, 128, 128, 0.108);
+}
+.dark{
+    background-color: rgba(128, 128, 128, 0.904);
+}
+
+
+.lt-primary{
+    background-color: rgb(13, 110, 253,0.5);
+}
+.lt-secondary{
+    background-color: rgba(128, 128, 128, 0.3);
+}
+.lt-success{
+    background-color: rgb(25, 135, 84,0.5);
+
+}
+.lt-info{
+    background-color: rgb(13, 202, 240,0.5);
+}
+.lt-warning{
+    background-color: rgb(255, 193, 7,0.5);
+}
+.lt-danger{
+  background-color: rgb(220, 53, 69,0.5);  
+}
+.lt-light{
+    background-color: rgba(128, 128, 128, 0.05);
+}
+.lt-dark{
+    background-color: rgba(128, 128, 128, 0.45);
+}
+
+
+.sidebar-toggle{
+  position: absolute;
+  left: 1.5em;
+  animation: in-n-out 1s ease-in-out infinite alternate;
+
+}
+
+@keyframes in-n-out {
+  from {right: 1.5em;}
+  to {right: 1.8em;}
+}
+
+
+.user{
+  position: relative;
+}
+
+
+.button {
+  
+  border: 0;
+  background: #4b84fe;
+  color: #fff;
+  width: auto;
+  height: 3.5em;
+  padding: 1em 1.25em;
+  border-radius: 3.5em;
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background-color .15s ease;
+  text-decoration: none;
+}
+.button:hover {
+  background-color: #1861fe;
+}
+.button:hover:active {
+  background-color: #0149e2;
+  transition: none;
+}

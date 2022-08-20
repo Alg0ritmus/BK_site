@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base/dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="search-wrap">
+            <a onclick='myToggle()' class="sidebar-toggle"><i class="fa fa-arrow-left"></i></a>
+            <div class="search" style="visibility: hidden;">
+                <label for="search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"/></svg>
+                    <input type="text" id="search">
+                </label>
+            </div>
+            
+            <div class="user-actions" style="visibility: hidden;">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.094 2.085l-1.013-.082a1.082 1.082 0 0 0-.161 0l-1.063.087C6.948 2.652 4 6.053 4 10v3.838l-.948 2.846A1 1 0 0 0 4 18h4.5c0 1.93 1.57 3.5 3.5 3.5s3.5-1.57 3.5-3.5H20a1 1 0 0 0 .889-1.495L20 13.838V10c0-3.94-2.942-7.34-6.906-7.915zM12 19.5c-.841 0-1.5-.659-1.5-1.5h3c0 .841-.659 1.5-1.5 1.5zM5.388 16l.561-1.684A1.03 1.03 0 0 0 6 14v-4c0-2.959 2.211-5.509 5.08-5.923l.921-.074.868.068C15.794 4.497 18 7.046 18 10v4c0 .107.018.214.052.316l.56 1.684H5.388z"/></svg>
+                </button>
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z"/><path d="M11 2h2v10h-2z"/></svg>
+                </button>
+            </div>
+        </aside>
+        
+        <header class="menu-wrap">
+            <figure class="user">
+                <div class="user-avatar">
+                    <img src="https://toppng.com/uploads/preview/app-icon-set-login-icon-comments-avatar-icon-11553436380yill0nchdm.png" alt="Amanda King">
+                </div>
+                <figcaption>
+                    {{user.get_username}}
+                </figcaption>
+                
+            </figure>
+        
+            <nav>
+                <section class="dicover">
+                    <h3>1.BK Humenné</h3>
+                    
+                    <ul>
+                        <li>
+                            <a href="{% url 'base:home' %}" class="active">Domov</a>
+                        </li>
+                        
+                        <li>
+                            <a href="{% url 'base:home' %}#kontakt">Kontakt</a>
+                        </li>
+                        
+                        <li>
+                            <a href="{% url 'base:home' %}#zapis">Zápis</a>
+                        </li>
+                        
+                        <li>
+                            <a href="{% url 'base:archiv' %}">Archív</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'base:galeria' %}">Galéria</a>
+                        </li>
+                    </ul>
+                </section>            
+            </nav>
+        </header>
+        
+        <main class="content-wrap">
+            <header class="content-head">
+                <h1 style="font-weight: 600 ;">Vaše atribúty:</h1>
+                    
+                <div class="action">
+                    <a  class="button" href="{% url 'base:log_out' %}">
+                        odhlasiť sa
+                    </a>
+                </div>
+            </header>
+            
+            <div class="content">
+            
+                <section class="person-boxes">
+                    
+                    <div class="permission">
+                        <span class="permission-title">Povolenia</span>
+                        <div class="list-wrapper">    
+                            {% for permission in permissions %}
+                            
+                            <span class="list-item">{{permission}}</span>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+<!-- IN PROGRESS
+                    <div class="permission">
+                        <span class="permission-title">Galérie</span>
+                        <div class="list-wrapper">    
+                                                  
+                            <span class="list-item lt-dark"></span>
+                           
+
+                        </div>
+                    </div>
+                    <div class="permission">
+                        <span class="permission-title">Články</span>
+                        <div class="list-wrapper">    
+                            <span class="list-item lt-primary">skuska</span>                       
+                            
+
+                        </div>
+                    </div>
+                     -->
+                </section>
+            </div>
+        </main>
+    </div>
+    <script>
+        function myToggle(){
+            var dashboard = document.getElementsByClassName("dashboard")[0].style;
+            var side_bar = document.getElementsByClassName("menu-wrap")[0].style;
+            var arrow = document.getElementsByClassName("fa-arrow-left")[0].style;
+            
+            if (side_bar.display == "none"){
+                side_bar.display = "block"
+                dashboard.display = "grid";
+                arrow.transform = "rotate(0deg)";
+                
+            } 
+            else{
+                side_bar.display = "none"
+                dashboard.display = "block";
+                arrow.transform = "rotate(180deg)";
+            }
+        }
+
+    </script>
+</body>
+</html>
